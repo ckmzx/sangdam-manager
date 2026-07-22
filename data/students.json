@@ -1,0 +1,165 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "박주성",
+      "school": "인천하늘고",
+      "grade": "고3",
+      "studentPhone": "010-9082-9883",
+      "parentPhone": "010-6310-9883",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 2,
+      "name": "장형욱",
+      "school": "영등포공고",
+      "grade": "고3",
+      "studentPhone": "010-8187-4266",
+      "parentPhone": "010-6342-4266",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 3,
+      "name": "이유빈",
+      "school": "논현고",
+      "grade": "고3",
+      "studentPhone": "010-9420-2038",
+      "parentPhone": "010-4370-3161",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 4,
+      "name": "이예은",
+      "school": "해송고",
+      "grade": "고3",
+      "studentPhone": "010-7379-1251",
+      "parentPhone": "010-3823-8237",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 5,
+      "name": "김지호",
+      "school": "연송고",
+      "grade": "고3",
+      "studentPhone": "010-6272-3669",
+      "parentPhone": "010-9171-3669",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 6,
+      "name": "원동현",
+      "school": "연수고",
+      "grade": "고2",
+      "studentPhone": "010-9172-7209",
+      "parentPhone": "010-3809-7208",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 7,
+      "name": "전소현",
+      "school": "인천고잔고",
+      "grade": "고2",
+      "studentPhone": "010-3973-3150",
+      "parentPhone": "010-8617-3150",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 8,
+      "name": "홍지석",
+      "school": "연수고",
+      "grade": "고2",
+      "studentPhone": "010-3149-9312",
+      "parentPhone": "010-2628-9312",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 9,
+      "name": "박준환",
+      "school": "대건고",
+      "grade": "고2",
+      "studentPhone": "010-3169-4935",
+      "parentPhone": "010-2355-4935",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 10,
+      "name": "박세빈",
+      "school": "학익여고",
+      "grade": "고2",
+      "studentPhone": "010-3101-8651",
+      "parentPhone": "010-2667-8651",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 11,
+      "name": "김주아",
+      "school": "인천여고",
+      "grade": "고2",
+      "studentPhone": "010-9892-4439",
+      "parentPhone": "010-2937-4439",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 12,
+      "name": "이유찬",
+      "school": "연수고",
+      "grade": "고2",
+      "studentPhone": "010-5786-7753",
+      "parentPhone": "010-8349-7753",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 13,
+      "name": "이예윤",
+      "school": "인천논현고",
+      "grade": "고2",
+      "studentPhone": "010-2969-6925",
+      "parentPhone": "",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 14,
+      "name": "정윤아",
+      "school": "옥련여고",
+      "grade": "고2",
+      "studentPhone": "010-3053-2363",
+      "parentPhone": "010-3159-4673",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 15,
+      "name": "고은서",
+      "school": "인천여고",
+      "grade": "고2",
+      "studentPhone": "010-2598-5022",
+      "parentPhone": "010-2261-9022",
+      "registered": false,
+      "memo": ""
+    },
+    {
+      "id": 16,
+      "name": "김민우",
+      "school": "연송고",
+      "grade": "고1",
+      "studentPhone": "010-4616-5433",
+      "parentPhone": "010-6286-5433",
+      "registered": false,
+      "memo": ""
+    }
+  ],
+  "nextId": 17
+}
