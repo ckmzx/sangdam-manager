@@ -167,7 +167,7 @@
       "grade": "g3",
       "studentPhone": "010-6283-8117",
       "parentPhone": "010-6654-2420",
-      "registered": true,
+      "registered": false,
       "memo": ""
     }
   ],
