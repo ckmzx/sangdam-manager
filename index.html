@@ -6,103 +6,79 @@
   <title>Pass 인천송도센터 - 상담생 관리</title>
   <style>
     :root {
-      --primary: #2563eb; --primary-dark: #1d4ed8;
-      --success: #16a34a; --success-light: #dcfce7;
-      --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
-      --gray-300: #d1d5db; --gray-500: #6b7280; --gray-700: #374151; --gray-900: #111827;
+      --primary:#2563eb; --primary-dark:#1d4ed8;
+      --success:#16a34a; --success-light:#dcfce7;
+      --gray-50:#f9fafb; --gray-100:#f3f4f6;
+      --gray-300:#d1d5db; --gray-500:#6b7280; --gray-700:#374151; --gray-900:#111827;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Apple SD Gothic Neo','Malgun Gothic',sans-serif; background: var(--gray-50); color: var(--gray-900); }
-
-    header {
-      background: var(--primary); color: white;
-      padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-    header h1 { font-size: 1.2rem; font-weight: 700; }
-    .header-right { display:flex; align-items:center; gap:12px; }
-    #syncStatus { font-size:0.8rem; opacity:0.9; }
-    .btn-token { background:rgba(255,255,255,0.2); color:white; border:1px solid rgba(255,255,255,0.4); padding:5px 12px; border-radius:6px; font-size:0.78rem; cursor:pointer; }
-    .btn-token:hover { background:rgba(255,255,255,0.3); }
-
-    .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
-
-    /* Token setup banner */
-    #tokenBanner {
-      background:#fef3c7; border:1px solid #f59e0b; border-radius:10px;
-      padding:14px 18px; margin-bottom:20px; display:flex; align-items:center; gap:12px;
-    }
-    #tokenBanner span { flex:1; font-size:0.88rem; color:#92400e; }
-
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--gray-50);color:var(--gray-900);}
+    header{background:var(--primary);color:white;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+    header h1{font-size:1.2rem;font-weight:700;}
+    .header-right{display:flex;align-items:center;gap:12px;}
+    #syncStatus{font-size:0.8rem;opacity:0.9;}
+    .btn-token{background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);padding:5px 12px;border-radius:6px;font-size:0.78rem;cursor:pointer;}
+    .btn-token:hover{background:rgba(255,255,255,0.3);}
+    .container{max-width:1100px;margin:0 auto;padding:24px 16px;}
+    /* Banner */
+    #tokenBanner{background:#fef3c7;border:1px solid #f59e0b;border-radius:10px;padding:14px 18px;margin-bottom:20px;display:none;align-items:center;gap:12px;}
+    #tokenBanner span{flex:1;font-size:0.88rem;color:#92400e;}
     /* Stats */
-    .stats-bar { display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
-    .stat-card { background:white; border-radius:10px; padding:14px 20px; flex:1; min-width:130px; box-shadow:0 1px 4px rgba(0,0,0,0.07); text-align:center; }
-    .stat-card .num { font-size:1.8rem; font-weight:700; color:var(--primary); }
-    .stat-card .label { font-size:0.75rem; color:var(--gray-500); margin-top:2px; }
-
-    /* Bulk copy */
-    .bulk-panel { background:white; border-radius:10px; padding:16px 20px; margin-bottom:20px; box-shadow:0 1px 4px rgba(0,0,0,0.07); }
-    .bulk-panel h3 { font-size:0.9rem; font-weight:700; margin-bottom:12px; color:var(--gray-700); }
-    .bulk-buttons { display:flex; gap:8px; flex-wrap:wrap; }
-
+    .stats-bar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
+    .stat-card{background:white;border-radius:10px;padding:14px 20px;flex:1;min-width:130px;box-shadow:0 1px 4px rgba(0,0,0,0.07);text-align:center;}
+    .stat-card .num{font-size:1.8rem;font-weight:700;color:var(--primary);}
+    .stat-card .label{font-size:0.75rem;color:var(--gray-500);margin-top:2px;}
+    /* Bulk */
+    .bulk-panel{background:white;border-radius:10px;padding:16px 20px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
+    .bulk-panel h3{font-size:0.9rem;font-weight:700;margin-bottom:12px;color:var(--gray-700);}
+    .bulk-buttons{display:flex;gap:8px;flex-wrap:wrap;}
     /* Toolbar */
-    .toolbar { display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap; align-items:center; }
-    .toolbar input[type=text] { flex:1; min-width:160px; padding:9px 14px; border:1px solid var(--gray-300); border-radius:8px; font-size:0.9rem; outline:none; }
-    .toolbar input:focus { border-color:var(--primary); }
-    select.filter-sel { padding:9px 12px; border:1px solid var(--gray-300); border-radius:8px; font-size:0.88rem; outline:none; background:white; }
-
+    .toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
+    .toolbar input[type=text]{flex:1;min-width:160px;padding:9px 14px;border:1px solid var(--gray-300);border-radius:8px;font-size:0.9rem;outline:none;}
+    .toolbar input:focus{border-color:var(--primary);}
+    select.filter-sel{padding:9px 12px;border:1px solid var(--gray-300);border-radius:8px;font-size:0.88rem;outline:none;background:white;}
     /* Buttons */
-    .btn { padding:9px 16px; border:none; border-radius:8px; font-size:0.85rem; font-weight:600; cursor:pointer; transition:opacity 0.15s; white-space:nowrap; }
-    .btn:hover { opacity:0.88; }
-    .btn-primary { background:var(--primary); color:white; }
-    .btn-success { background:var(--success); color:white; }
-    .btn-purple { background:#7c3aed; color:white; }
-    .btn-outline { background:white; color:var(--gray-700); border:1px solid var(--gray-300); }
-    .btn-danger { background:#fee2e2; color:#b91c1c; border:none; }
-    .btn-sm { padding:5px 10px; font-size:0.78rem; border-radius:6px; }
-    .btn:disabled { opacity:0.5; cursor:not-allowed; }
-
+    .btn{padding:9px 16px;border:none;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:opacity 0.15s;white-space:nowrap;}
+    .btn:hover{opacity:0.88;}
+    .btn-primary{background:var(--primary);color:white;}
+    .btn-success{background:var(--success);color:white;}
+    .btn-purple{background:#7c3aed;color:white;}
+    .btn-outline{background:white;color:var(--gray-700);border:1px solid var(--gray-300);}
+    .btn-danger{background:#fee2e2;color:#b91c1c;border:none;}
+    .btn-sm{padding:5px 10px;font-size:0.78rem;border-radius:6px;}
+    .btn:disabled{opacity:0.5;cursor:not-allowed;}
     /* Table */
-    .section-label { font-size:0.78rem; font-weight:700; color:var(--gray-500); letter-spacing:0.04em; margin:20px 0 8px; padding-left:4px; }
-    .grade-block { margin-bottom:28px; }
-    table { width:100%; border-collapse:collapse; background:white; border-radius:10px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.07); }
-    thead tr { background:var(--gray-100); }
-    th { padding:11px 13px; text-align:left; font-size:0.8rem; font-weight:700; color:var(--gray-500); white-space:nowrap; }
-    td { padding:10px 13px; font-size:0.87rem; border-top:1px solid var(--gray-100); vertical-align:middle; }
-    tr.registered { background:var(--success-light) !important; }
-    tr.registered td { color:#166534; }
-    .reg-checkbox { width:17px; height:17px; cursor:pointer; accent-color:var(--success); }
-    .badge { display:inline-block; padding:2px 9px; border-radius:99px; font-size:0.74rem; font-weight:700; }
-    .badge-3 { background:#fee2e2; color:#b91c1c; }
-    .badge-2 { background:#fef9c3; color:#92400e; }
-    .badge-1 { background:#dbeafe; color:#1d4ed8; }
-    .phone-cell { display:flex; align-items:center; gap:6px; white-space:nowrap; }
-    .action-btns { display:flex; gap:5px; }
-
+    .section-label{font-size:0.78rem;font-weight:700;color:var(--gray-500);letter-spacing:0.04em;margin:20px 0 8px;padding-left:4px;}
+    .grade-block{margin-bottom:28px;}
+    table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
+    thead tr{background:var(--gray-100);}
+    th{padding:11px 13px;text-align:left;font-size:0.8rem;font-weight:700;color:var(--gray-500);white-space:nowrap;}
+    td{padding:10px 13px;font-size:0.87rem;border-top:1px solid var(--gray-100);vertical-align:middle;}
+    tr.registered{background:var(--success-light)!important;}
+    tr.registered td{color:#166534;}
+    .reg-checkbox{width:17px;height:17px;cursor:pointer;accent-color:var(--success);}
+    .badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:0.74rem;font-weight:700;}
+    .badge-3{background:#fee2e2;color:#b91c1c;}
+    .badge-2{background:#fef9c3;color:#92400e;}
+    .badge-1{background:#dbeafe;color:#1d4ed8;}
+    .phone-cell{display:flex;align-items:center;gap:6px;white-space:nowrap;}
+    .action-btns{display:flex;gap:5px;}
     /* Modal */
-    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:100; align-items:center; justify-content:center; }
-    .modal-overlay.open { display:flex; }
-    .modal { background:white; border-radius:14px; padding:28px 24px; width:100%; max-width:430px; box-shadow:0 8px 32px rgba(0,0,0,0.2); }
-    .modal h2 { font-size:1.05rem; font-weight:700; margin-bottom:18px; }
-    .form-group { margin-bottom:13px; }
-    .form-group label { display:block; font-size:0.8rem; color:var(--gray-700); margin-bottom:4px; font-weight:600; }
-    .form-group input, .form-group select { width:100%; padding:9px 12px; border:1px solid var(--gray-300); border-radius:8px; font-size:0.9rem; outline:none; }
-    .form-group input:focus, .form-group select:focus { border-color:var(--primary); }
-    .form-hint { font-size:0.75rem; color:var(--gray-500); margin-top:4px; }
-    .modal-footer { display:flex; gap:10px; justify-content:flex-end; margin-top:20px; }
-
-    /* Loading spinner */
-    .spinner { display:inline-block; width:16px; height:16px; border:2px solid rgba(255,255,255,0.4); border-top-color:white; border-radius:50%; animation:spin 0.7s linear infinite; margin-right:6px; vertical-align:middle; }
-    @keyframes spin { to { transform:rotate(360deg); } }
-
-    /* Toast */
-    .toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px); background:#1e293b; color:white; padding:10px 22px; border-radius:99px; font-size:0.88rem; opacity:0; transition:all 0.25s; z-index:200; pointer-events:none; }
-    .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
-
-    @media (max-width:640px) {
-      th, td { padding:8px 9px; font-size:0.8rem; }
-      .action-btns { flex-direction:column; }
-    }
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:100;align-items:center;justify-content:center;}
+    .modal-overlay.open{display:flex;}
+    .modal{background:white;border-radius:14px;padding:28px 24px;width:100%;max-width:430px;box-shadow:0 8px 32px rgba(0,0,0,0.2);}
+    .modal h2{font-size:1.05rem;font-weight:700;margin-bottom:18px;}
+    .form-group{margin-bottom:13px;}
+    .form-group label{display:block;font-size:0.8rem;color:var(--gray-700);margin-bottom:4px;font-weight:600;}
+    .form-group input,.form-group select{width:100%;padding:9px 12px;border:1px solid var(--gray-300);border-radius:8px;font-size:0.9rem;outline:none;}
+    .form-group input:focus,.form-group select:focus{border-color:var(--primary);}
+    .form-hint{font-size:0.75rem;color:var(--gray-500);margin-top:4px;}
+    .modal-footer{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
+    .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;margin-right:6px;vertical-align:middle;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+    .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:white;padding:10px 22px;border-radius:99px;font-size:0.88rem;opacity:0;transition:all 0.25s;z-index:200;pointer-events:none;}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+    @media(max-width:640px){th,td{padding:8px 9px;font-size:0.8rem;}.action-btns{flex-direction:column;}}
   </style>
 </head>
 <body>
@@ -111,19 +87,16 @@
   <h1>🏃 Pass 인천송도센터 상담생 관리</h1>
   <div class="header-right">
     <span id="syncStatus"></span>
-    <button class="btn-token" onclick="openTokenModal()">&#9881; 토큰 설정</button>
+    <button class="btn-token" onclick="openTokenModal()">⚙️ 토큰 설정</button>
   </div>
 </header>
 
 <div class="container">
-
-  <!-- 토큰 미설정 안내 배너 -->
-  <div id="tokenBanner" style="display:none">
-    <span>⚠️ GitHub 토큰이 설정되지 않았습니다. 토큰을 설정해야 데이터가 서버에 저장됩니다.</span>
+  <div id="tokenBanner">
+    <span>⚠️ GitHub 토큰이 설정되지 않았습니다. 지금은 로컈에서만 저장됩니다.</span>
     <button class="btn btn-primary btn-sm" onclick="openTokenModal()">토큰 설정하기</button>
   </div>
 
-  <!-- 통계 -->
   <div class="stats-bar">
     <div class="stat-card"><div class="num" id="statTotal">0</div><div class="label">전체 상담생</div></div>
     <div class="stat-card"><div class="num" id="statReg">0</div><div class="label">등록 완료</div></div>
@@ -131,7 +104,6 @@
     <div class="stat-card"><div class="num" id="statRate">0%</div><div class="label">등록률</div></div>
   </div>
 
-  <!-- 일괄 번호 복사 -->
   <div class="bulk-panel">
     <h3>📋 일괄 번호 복사 (문자 발송용)</h3>
     <div class="bulk-buttons">
@@ -142,7 +114,6 @@
     </div>
   </div>
 
-  <!-- 툴바 -->
   <div class="toolbar">
     <input type="text" id="searchInput" placeholder="🔍 이름, 학교로 검색..." oninput="renderAll()" />
     <select class="filter-sel" id="filterGrade" onchange="renderAll()">
@@ -162,7 +133,7 @@
   <div id="tableContainer"></div>
 </div>
 
-<!-- 학생 추가/수정 모달 -->
+<!-- 학생 모달 -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <h2 id="modalTitle">신규 상담생 추가</h2>
@@ -181,20 +152,20 @@
   </div>
 </div>
 
-<!-- GitHub 토큰 설정 모달 -->
+<!-- 토큰 모달 -->
 <div class="modal-overlay" id="tokenModalOverlay">
   <div class="modal">
     <h2>🔑 GitHub 토큰 설정</h2>
     <div class="form-group">
       <label>Personal Access Token</label>
       <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
-      <div class="form-hint">토큰은 브라우저 localStorage에만 저장되며, 서버로 전송되지 않습니다.</div>
+      <div class="form-hint">토큰은 브라우저에만 저장되며 서버로 전송되지 않습니다.</div>
       <div class="form-hint" style="margin-top:6px">토큰 발급: GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → <strong>repo</strong> 체크</div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-danger btn-sm" onclick="clearToken()" style="margin-right:auto">토큰 삭제</button>
       <button class="btn btn-outline" onclick="closeTokenModal()">취소</button>
-      <button class="btn btn-primary" onclick="saveToken()">저장 후 데이터 불러오기</button>
+      <button class="btn btn-primary" onclick="saveToken()">GitHub에서 데이터 불러오기</button>
     </div>
   </div>
 </div>
@@ -202,13 +173,9 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── 설정 ──────────────────────────────────────────
-const OWNER = 'ckmzx';
-const REPO  = 'sangdam-manager';
-const FILE  = 'data/students.json';
-const BRANCH = 'main';
+const OWNER='ckmzx', REPO='sangdam-manager', FILE='data/students.json', BRANCH='main';
 
-const DEFAULT_DATA = [
+const DEFAULT_DATA=[
   {id:1,  name:"박주성", school:"인천하늘고", grade:"고3", studentPhone:"010-9082-9883", parentPhone:"010-6310-9883", registered:false, memo:""},
   {id:2,  name:"장형욱", school:"영등포공고", grade:"고3", studentPhone:"010-8187-4266", parentPhone:"010-6342-4266", registered:false, memo:""},
   {id:3,  name:"이유빈", school:"논현고",     grade:"고3", studentPhone:"010-9420-2038", parentPhone:"010-4370-3161", registered:false, memo:""},
@@ -227,143 +194,132 @@ const DEFAULT_DATA = [
   {id:16, name:"김민우", school:"연송고",     grade:"고1", studentPhone:"010-4616-5433", parentPhone:"010-6286-5433", registered:false, memo:""}
 ];
 
-let students = [];
-let nextId = 17;
-let editingId = null;
-let currentFileSha = null; // GitHub 파일 SHA (업데이트 시 필요)
+let students=[], nextId=17, editingId=null, currentFileSha=null;
 
-// ─── 토큰 관리 ───────────────────────────────────────
-function getToken() { return localStorage.getItem('gh_pat') || ''; }
-function openTokenModal() {
-  document.getElementById('tokenInput').value = getToken();
-  document.getElementById('tokenModalOverlay').classList.add('open');
-}
-function closeTokenModal() { document.getElementById('tokenModalOverlay').classList.remove('open'); }
-function saveToken() {
-  const t = document.getElementById('tokenInput').value.trim();
-  if (!t) { alert('토큰을 입력해주세요.'); return; }
-  localStorage.setItem('gh_pat', t);
+// ─ 토큰
+function getToken(){return localStorage.getItem('gh_pat')||'';}
+function openTokenModal(){document.getElementById('tokenInput').value=getToken();document.getElementById('tokenModalOverlay').classList.add('open');}
+function closeTokenModal(){document.getElementById('tokenModalOverlay').classList.remove('open');}
+function saveToken(){
+  const t=document.getElementById('tokenInput').value.trim();
+  if(!t){alert('토큰을 입력해주세요.');return;}
+  localStorage.setItem('gh_pat',t);
   closeTokenModal();
-  showToast('토큰 저장 완료! 데이터를 불러옵니다...');
+  showToast('토큰 저장! GitHub에서 데이터를 가져옵니다...');
   loadFromGitHub();
 }
-function clearToken() {
-  if (!confirm('토큰을 삭제하시겠습니까?')) return;
+function clearToken(){
+  if(!confirm('토큰을 삭제하시겠습니까?'))return;
   localStorage.removeItem('gh_pat');
   closeTokenModal();
-  checkTokenBanner();
-  showToast('토큰이 삭제되었습니다.');
+  updateBanner();
+  showToast('토큰 삭제 완료');
 }
-function checkTokenBanner() {
-  document.getElementById('tokenBanner').style.display = getToken() ? 'none' : 'flex';
-}
-
-// ─── GitHub API ──────────────────────────────────────
-function apiHeaders() {
-  return {
-    'Authorization': 'token ' + getToken(),
-    'Content-Type': 'application/json',
-    'Accept': 'application/vnd.github.v3+json'
-  };
+function updateBanner(){
+  document.getElementById('tokenBanner').style.display=getToken()?'none':'flex';
 }
 
-async function loadFromGitHub() {
-  if (!getToken()) {
-    // 토큰 없으면 localStorage fallback
-    const raw = localStorage.getItem('passStudents_fallback');
-    if (raw) { const p=JSON.parse(raw); students=p.students; nextId=p.nextId; }
-    else { students=DEFAULT_DATA.map(s=>({...s})); nextId=17; }
-    checkTokenBanner();
-    renderAll();
+// ─ GitHub API
+function apiHeaders(){
+  return{'Authorization':'token '+getToken(),'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'};
+}
+
+async function loadFromGitHub(){
+  // 토큰 없으면 즉시 fallback 표시
+  if(!getToken()){
+    loadFallback();
+    updateBanner();
     return;
   }
-  setSyncStatus('🔄 로딩 중...');
-  try {
-    const res = await fetch(
-      `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}?ref=${BRANCH}`,
-      { headers: apiHeaders() }
+  setSyncStatus('🔄 서버에서 데이터 로딩 중...');
+  try{
+    const res=await fetch(
+      `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}?ref=${BRANCH}&t=${Date.now()}`,
+      {headers:apiHeaders()}
     );
-    if (res.status === 404) {
-      // 파일 없으면 초기 데이터로 생성
-      students = DEFAULT_DATA.map(s=>({...s}));
-      nextId = 17;
+    if(res.status===404){
+      students=DEFAULT_DATA.map(s=>({...s})); nextId=17;
+      renderAll();
       await saveToGitHub();
-    } else if (res.ok) {
-      const json = await res.json();
-      currentFileSha = json.sha;
-      const decoded = JSON.parse(atob(json.content.replace(/\n/g,'')));
-      students = decoded.students || DEFAULT_DATA.map(s=>({...s}));
-      nextId = decoded.nextId || (Math.max(...students.map(s=>s.id))+1);
-      setSyncStatus('✅ 마지막 동기화: ' + new Date().toLocaleTimeString('ko-KR'));
+    } else if(res.ok){
+      const json=await res.json();
+      currentFileSha=json.sha;
+      const decoded=JSON.parse(atob(json.content.replace(/\n/g,'')));
+      students=decoded.students||DEFAULT_DATA.map(s=>({...s}));
+      nextId=decoded.nextId||(Math.max(...students.map(s=>s.id))+1);
+      setSyncStatus('✅ 동기화 완료: '+new Date().toLocaleTimeString('ko-KR'));
+      // fallback 업데이트
+      localStorage.setItem('passStudents_fallback',JSON.stringify({students,nextId}));
     } else {
-      throw new Error('HTTP ' + res.status);
+      throw new Error('HTTP '+res.status+(res.status===401?' (토큰 오류)':res.status===403?' (권한 부족)':''));
     }
-  } catch(e) {
-    setSyncStatus('⚠️ 로딩 실패: ' + e.message);
-    showToast('⚠️ 데이터 로딩 실패. 토큰을 확인하세요.');
-    // fallback to localStorage
-    const raw = localStorage.getItem('passStudents_fallback');
-    if (raw) { const p=JSON.parse(raw); students=p.students; nextId=p.nextId; }
-    else { students=DEFAULT_DATA.map(s=>({...s})); nextId=17; }
+  } catch(e){
+    setSyncStatus('⚠️ '+e.message);
+    showToast('⚠️ 로딩 실패 — '+e.message);
+    loadFallback();
   }
-  checkTokenBanner();
+  updateBanner();
   renderAll();
 }
 
-async function saveToGitHub() {
-  if (!getToken()) {
-    // 토큰 없으면 localStorage에만 저장
-    localStorage.setItem('passStudents_fallback', JSON.stringify({students,nextId}));
-    setSyncStatus('⚠️ 로컈 저장 (토큰 미설정)');
+function loadFallback(){
+  const raw=localStorage.getItem('passStudents_fallback');
+  if(raw){
+    const p=JSON.parse(raw);
+    students=p.students; nextId=p.nextId;
+    setSyncStatus('💾 로컈 데이터 표시 — 토큰 설정 후 서버 데이터 사용 가능');
+  } else {
+    students=DEFAULT_DATA.map(s=>({...s})); nextId=17;
+    setSyncStatus('토큰 미설정 — 우측 상단 ⚙️ 토큰 설정 버튼을 눌러주세요');
+  }
+}
+
+async function saveToGitHub(){
+  if(!getToken()){
+    localStorage.setItem('passStudents_fallback',JSON.stringify({students,nextId}));
+    setSyncStatus('💾 로컈 저장 (토큰 미설정)');
     return;
   }
   setSyncStatus('🔄 저장 중...');
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify({students,nextId}, null, 2))));
-  const body = {
-    message: `데이터 업데이트 - ${new Date().toLocaleString('ko-KR')}`,
-    content,
-    branch: BRANCH
-  };
-  if (currentFileSha) body.sha = currentFileSha;
-  try {
-    const res = await fetch(
+  const content=btoa(unescape(encodeURIComponent(JSON.stringify({students,nextId},null,2))));
+  const body={message:`데이터 업데이트 - ${new Date().toLocaleString('ko-KR')}`,content,branch:BRANCH};
+  if(currentFileSha) body.sha=currentFileSha;
+  try{
+    const res=await fetch(
       `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`,
-      { method:'PUT', headers:apiHeaders(), body:JSON.stringify(body) }
+      {method:'PUT',headers:apiHeaders(),body:JSON.stringify(body)}
     );
-    if (res.ok) {
-      const json = await res.json();
-      currentFileSha = json.content.sha;
-      setSyncStatus('✅ 마지막 동기화: ' + new Date().toLocaleTimeString('ko-KR'));
-      // fallback에도 저장
-      localStorage.setItem('passStudents_fallback', JSON.stringify({students,nextId}));
+    if(res.ok){
+      const json=await res.json();
+      currentFileSha=json.content.sha;
+      setSyncStatus('✅ 저장 완료: '+new Date().toLocaleTimeString('ko-KR'));
+      localStorage.setItem('passStudents_fallback',JSON.stringify({students,nextId}));
     } else {
-      const err = await res.json();
-      throw new Error(err.message || 'HTTP '+res.status);
+      const err=await res.json();
+      throw new Error(err.message||'HTTP '+res.status);
     }
-  } catch(e) {
-    setSyncStatus('⚠️ 저장 실패: ' + e.message);
-    showToast('⚠️ GitHub 저장 실패! 토큰을 확인하세요.');
-    localStorage.setItem('passStudents_fallback', JSON.stringify({students,nextId}));
+  } catch(e){
+    setSyncStatus('⚠️ 저장 실패: '+e.message);
+    showToast('⚠️ GitHub 저장 실패! 토큰 확인 필요');
+    localStorage.setItem('passStudents_fallback',JSON.stringify({students,nextId}));
   }
 }
 
-function setSyncStatus(msg) {
-  document.getElementById('syncStatus').textContent = msg;
+function setSyncStatus(msg){document.getElementById('syncStatus').textContent=msg;}
+
+// ─ 통계
+function updateStats(data){
+  const total=data.length,reg=data.filter(s=>s.registered).length;
+  document.getElementById('statTotal').textContent=total;
+  document.getElementById('statReg').textContent=reg;
+  document.getElementById('statPending').textContent=total-reg;
+  document.getElementById('statRate').textContent=total?Math.round(reg/total*100)+'%':'0%';
 }
 
-// ─── 통계 ────────────────────────────────────────────
-function updateStats(data) {
-  const total = data.length, reg = data.filter(s=>s.registered).length;
-  document.getElementById('statTotal').textContent   = total;
-  document.getElementById('statReg').textContent     = reg;
-  document.getElementById('statPending').textContent = total - reg;
-  document.getElementById('statRate').textContent    = total ? Math.round(reg/total*100)+'%' : '0%';
-}
+// ─ 렌더
+const GRADES=['고3','고2','고1'],GRADE_LBL={'고3':'고3 이상','고2':'고2','고1':'고1'},GRADE_BDG={'고3':'badge-3','고2':'badge-2','고1':'badge-1'};
 
-// ─── 렌더 ──────────────────────────────────────────────
-const GRADES=['고3','고2','고1'], GRADE_LBL={'고3':'고3 이상','고2':'고2','고1':'고1'}, GRADE_BDG={'고3':'badge-3','고2':'badge-2','고1':'badge-1'};
-
-function getFiltered() {
+function getFiltered(){
   const q=document.getElementById('searchInput').value.toLowerCase();
   const gf=document.getElementById('filterGrade').value;
   const rf=document.getElementById('filterReg').value;
@@ -375,12 +331,12 @@ function getFiltered() {
   });
 }
 
-function phoneCell(phone) {
-  if (!phone) return '<span style="color:var(--gray-300)">-</span>';
+function phoneCell(phone){
+  if(!phone) return '<span style="color:var(--gray-300)">-</span>';
   return `<div class="phone-cell">${phone}<button class="btn btn-outline btn-sm" onclick="copyOne('${phone}')">복사</button></div>`;
 }
 
-function renderAll() {
+function renderAll(){
   const filtered=getFiltered();
   updateStats(filtered);
   const container=document.getElementById('tableContainer');
@@ -413,21 +369,21 @@ function renderAll() {
         </div></td>`;
       tbody.appendChild(tr);
     });
-    tbl.appendChild(tbody); block.appendChild(tbl); container.appendChild(block);
+    tbl.appendChild(tbody);block.appendChild(tbl);container.appendChild(block);
   });
   if(!anyShown) container.innerHTML='<div style="text-align:center;padding:48px;color:var(--gray-500)">검색 결과가 없습니다.</div>';
 }
 
-// ─── 데이터 조작 ────────────────────────────────────────
-function toggleReg(id,checked) {
-  const s=students.find(x=>x.id===id); if(!s) return;
+// ─ 데이터 조작
+function toggleReg(id,checked){
+  const s=students.find(x=>x.id===id);if(!s)return;
   s.registered=checked;
   renderAll();
   saveToGitHub();
   showToast(checked?`✅ ${s.name} 등록 완료!`:`⬜ ${s.name} 미등록으로 변경`);
 }
 
-function bulkCopy(type,scope) {
+function bulkCopy(type,scope){
   let list=scope==='unregistered'?students.filter(s=>!s.registered):students;
   const phones=list.map(s=>type==='student'?s.studentPhone:s.parentPhone).filter(p=>p&&p.trim());
   if(!phones.length){showToast('복사할 번호가 없습니다.');return;}
@@ -437,7 +393,7 @@ function bulkCopy(type,scope) {
 
 function copyOne(text){navigator.clipboard.writeText(text);showToast('📋 복사되었습니다!');}
 
-function openAddModal() {
+function openAddModal(){
   editingId=null;
   document.getElementById('modalTitle').textContent='신규 상담생 추가';
   ['fName','fSchool','fStudentPhone','fParentPhone','fMemo'].forEach(id=>document.getElementById(id).value='');
@@ -446,8 +402,8 @@ function openAddModal() {
   document.getElementById('fName').focus();
 }
 
-function openEditModal(id) {
-  const s=students.find(x=>x.id===id); if(!s) return;
+function openEditModal(id){
+  const s=students.find(x=>x.id===id);if(!s)return;
   editingId=id;
   document.getElementById('modalTitle').textContent='학생 정보 수정';
   document.getElementById('fName').value=s.name;
@@ -461,15 +417,15 @@ function openEditModal(id) {
 
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
 
-async function saveStudent() {
+async function saveStudent(){
   const name=document.getElementById('fName').value.trim();
   const school=document.getElementById('fSchool').value.trim();
   if(!name||!school){alert('이름과 학교는 필수입니다.');return;}
   const btn=document.getElementById('btnSaveStudent');
-  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>저장 중...';
-  if(editingId!==null) {
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>저장 중...';
+  if(editingId!==null){
     const s=students.find(x=>x.id===editingId);
-    s.name=name; s.school=school;
+    s.name=name;s.school=school;
     s.grade=document.getElementById('fGrade').value;
     s.studentPhone=document.getElementById('fStudentPhone').value.trim();
     s.parentPhone=document.getElementById('fParentPhone').value.trim();
@@ -484,14 +440,15 @@ async function saveStudent() {
     });
   }
   await saveToGitHub();
-  btn.disabled=false; btn.innerHTML='저장';
-  closeModal(); renderAll();
-  showToast(editingId!==null?'✅ 수정 완료!':'✅ 신규 상담생 추가 완료!');
+  btn.disabled=false;btn.innerHTML='저장';
+  const wasEditing=editingId!==null;
+  closeModal();renderAll();
+  showToast(wasEditing?'✅ 수정 완료!':'✅ 신규 상담생 추가 완료!');
 }
 
-async function deleteStudent(id) {
-  const s=students.find(x=>x.id===id); if(!s) return;
-  if(!confirm(`'${s.name}' 학생을 삭제하시겠습니까?`)) return;
+async function deleteStudent(id){
+  const s=students.find(x=>x.id===id);if(!s)return;
+  if(!confirm(`'${s.name}' 학생을 삭제하시겠습니까?`))return;
   students=students.filter(x=>x.id!==id);
   renderAll();
   await saveToGitHub();
@@ -500,15 +457,18 @@ async function deleteStudent(id) {
 
 function showToast(msg){
   const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
+  t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
 document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.getElementById('tokenModalOverlay').addEventListener('click',function(e){if(e.target===this)closeTokenModal();});
 
-// ─── 시작 ──────────────────────────────────────────────
-loadFromGitHub();
+// ─ 시작: 항상 fallback 먼저 표시 후 GitHub에서 갱신
+loadFallback();
+renderAll();
+if(getToken()) loadFromGitHub();
+else updateBanner();
 </script>
 </body>
 </html>
