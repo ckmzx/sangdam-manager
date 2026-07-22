@@ -6,7 +6,7 @@
   <title>PASS 인천송도센터 - 상담생 관리</title>
   <style>
     :root{
-      --primary:#2563eb;--primary-dark:#1d4ed8;
+      --primary:#003887;--primary-dark:#002d6e;
       --success:#16a34a;--success-light:#dcfce7;
       --gray-50:#f9fafb;--gray-100:#f3f4f6;
       --gray-300:#d1d5db;--gray-500:#6b7280;--gray-700:#374151;--gray-900:#111827;
@@ -84,7 +84,7 @@
 </header>
 <div class="container">
   <div id="tokenBanner">
-    <span>⚠️ GitHub 토큰이 설정되지 않았습니다. 지금은 로컈에서만 저장됩니다.</span>
+    <span>⚠️ GitHub 토큰이 설정되지 않았습니다. 지금은 로컬에서만 저장됩니다.</span>
     <button class="btn btn-primary btn-sm" onclick="openTokenModal()">토큰 설정하기</button>
   </div>
   <div class="stats-bar">
@@ -189,13 +189,11 @@ const DEFAULT_DATA=[
 
 let students=[],nextId=17,editingId=null,currentFileSha=null;
 
-// ─── UTF-8 안전 Base64 디코더 ───────────────────────────
 function b64DecodeUnicode(str){
   return decodeURIComponent(atob(str).split('').map(c=>{
     return '%'+('00'+c.charCodeAt(0).toString(16)).slice(-2);
   }).join(''));
 }
-// ─── UTF-8 안전 Base64 인코더 ───────────────────────────
 function b64EncodeUnicode(str){
   return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,(_,p1)=>String.fromCharCode('0x'+p1)));
 }
@@ -239,7 +237,6 @@ async function loadFromGitHub(){
     } else if(res.ok){
       const json=await res.json();
       currentFileSha=json.sha;
-      // 한글 깨짐 해결: b64DecodeUnicode 사용
       const decoded=JSON.parse(b64DecodeUnicode(json.content.replace(/\n/g,'')));
       students=decoded.students||DEFAULT_DATA.map(s=>({...s}));
       nextId=decoded.nextId||(Math.max(...students.map(s=>s.id))+1);
@@ -262,7 +259,7 @@ function loadFallback(){
   const raw=localStorage.getItem('passStudents_fallback');
   if(raw){
     const p=JSON.parse(raw);students=p.students;nextId=p.nextId;
-    setSyncStatus('💾 로컈 데이터 표시');
+    setSyncStatus('💾 로컬 데이터 표시');
   } else {
     students=DEFAULT_DATA.map(s=>({...s}));nextId=17;
     setSyncStatus('토큰 미설정 — 우측 상단 ⚙️을 눌러주세요');
@@ -272,11 +269,10 @@ function loadFallback(){
 async function saveToGitHub(){
   if(!getToken()){
     localStorage.setItem('passStudents_fallback',JSON.stringify({students,nextId}));
-    setSyncStatus('💾 로컈 저장 (토큰 미설정)');
+    setSyncStatus('💾 로컬 저장 (토큰 미설정)');
     return;
   }
   setSyncStatus('🔄 저장 중...');
-  // 한글 깨짐 해결: b64EncodeUnicode 사용
   const content=b64EncodeUnicode(JSON.stringify({students,nextId},null,2));
   const body={message:`데이터 업데이트 - ${new Date().toLocaleString('ko-KR')}`,content,branch:BRANCH};
   if(currentFileSha)body.sha=currentFileSha;
