@@ -27,7 +27,7 @@
       "grade": "g3",
       "studentPhone": "010-9420-2038",
       "parentPhone": "010-4370-3161",
-      "registered": true,
+      "registered": false,
       "memo": ""
     },
     {
@@ -37,7 +37,7 @@
       "grade": "g3",
       "studentPhone": "010-7379-1251",
       "parentPhone": "010-3823-8237",
-      "registered": true,
+      "registered": false,
       "memo": ""
     },
     {
