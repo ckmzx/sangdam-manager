@@ -5,84 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pass 인천송도센터 - 상담생 관리</title>
   <style>
-    :root {
-      --primary:#2563eb; --primary-dark:#1d4ed8;
-      --success:#16a34a; --success-light:#dcfce7;
-      --gray-50:#f9fafb; --gray-100:#f3f4f6;
-      --gray-300:#d1d5db; --gray-500:#6b7280; --gray-700:#374151; --gray-900:#111827;
+    :root{
+      --primary:#2563eb;--primary-dark:#1d4ed8;
+      --success:#16a34a;--success-light:#dcfce7;
+      --gray-50:#f9fafb;--gray-100:#f3f4f6;
+      --gray-300:#d1d5db;--gray-500:#6b7280;--gray-700:#374151;--gray-900:#111827;
     }
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--gray-50);color:var(--gray-900);}
-    header{background:var(--primary);color:white;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+    header{background:var(--primary);color:white;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.15);}
     header h1{font-size:1.2rem;font-weight:700;}
     .header-right{display:flex;align-items:center;gap:12px;}
-    #syncStatus{font-size:0.8rem;opacity:0.9;}
-    .btn-token{background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);padding:5px 12px;border-radius:6px;font-size:0.78rem;cursor:pointer;}
-    .btn-token:hover{background:rgba(255,255,255,0.3);}
+    #syncStatus{font-size:.8rem;opacity:.9;}
+    .btn-token{background:rgba(255,255,255,.2);color:white;border:1px solid rgba(255,255,255,.4);padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;}
+    .btn-token:hover{background:rgba(255,255,255,.3);}
     .container{max-width:1100px;margin:0 auto;padding:24px 16px;}
-    /* Banner */
     #tokenBanner{background:#fef3c7;border:1px solid #f59e0b;border-radius:10px;padding:14px 18px;margin-bottom:20px;display:none;align-items:center;gap:12px;}
-    #tokenBanner span{flex:1;font-size:0.88rem;color:#92400e;}
-    /* Stats */
+    #tokenBanner span{flex:1;font-size:.88rem;color:#92400e;}
     .stats-bar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
-    .stat-card{background:white;border-radius:10px;padding:14px 20px;flex:1;min-width:130px;box-shadow:0 1px 4px rgba(0,0,0,0.07);text-align:center;}
+    .stat-card{background:white;border-radius:10px;padding:14px 20px;flex:1;min-width:130px;box-shadow:0 1px 4px rgba(0,0,0,.07);text-align:center;}
     .stat-card .num{font-size:1.8rem;font-weight:700;color:var(--primary);}
-    .stat-card .label{font-size:0.75rem;color:var(--gray-500);margin-top:2px;}
-    /* Bulk */
-    .bulk-panel{background:white;border-radius:10px;padding:16px 20px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
-    .bulk-panel h3{font-size:0.9rem;font-weight:700;margin-bottom:12px;color:var(--gray-700);}
+    .stat-card .label{font-size:.75rem;color:var(--gray-500);margin-top:2px;}
+    .bulk-panel{background:white;border-radius:10px;padding:16px 20px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.07);}
+    .bulk-panel h3{font-size:.9rem;font-weight:700;margin-bottom:12px;color:var(--gray-700);}
     .bulk-buttons{display:flex;gap:8px;flex-wrap:wrap;}
-    /* Toolbar */
     .toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
-    .toolbar input[type=text]{flex:1;min-width:160px;padding:9px 14px;border:1px solid var(--gray-300);border-radius:8px;font-size:0.9rem;outline:none;}
+    .toolbar input[type=text]{flex:1;min-width:160px;padding:9px 14px;border:1px solid var(--gray-300);border-radius:8px;font-size:.9rem;outline:none;}
     .toolbar input:focus{border-color:var(--primary);}
-    select.filter-sel{padding:9px 12px;border:1px solid var(--gray-300);border-radius:8px;font-size:0.88rem;outline:none;background:white;}
-    /* Buttons */
-    .btn{padding:9px 16px;border:none;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:opacity 0.15s;white-space:nowrap;}
-    .btn:hover{opacity:0.88;}
+    select.filter-sel{padding:9px 12px;border:1px solid var(--gray-300);border-radius:8px;font-size:.88rem;outline:none;background:white;}
+    .btn{padding:9px 16px;border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:opacity .15s;white-space:nowrap;}
+    .btn:hover{opacity:.88;}
     .btn-primary{background:var(--primary);color:white;}
     .btn-success{background:var(--success);color:white;}
     .btn-purple{background:#7c3aed;color:white;}
     .btn-outline{background:white;color:var(--gray-700);border:1px solid var(--gray-300);}
     .btn-danger{background:#fee2e2;color:#b91c1c;border:none;}
-    .btn-sm{padding:5px 10px;font-size:0.78rem;border-radius:6px;}
-    .btn:disabled{opacity:0.5;cursor:not-allowed;}
-    /* Table */
-    .section-label{font-size:0.78rem;font-weight:700;color:var(--gray-500);letter-spacing:0.04em;margin:20px 0 8px;padding-left:4px;}
+    .btn-sm{padding:5px 10px;font-size:.78rem;border-radius:6px;}
+    .btn:disabled{opacity:.5;cursor:not-allowed;}
+    .section-label{font-size:.78rem;font-weight:700;color:var(--gray-500);letter-spacing:.04em;margin:20px 0 8px;padding-left:4px;}
     .grade-block{margin-bottom:28px;}
-    table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.07);}
+    table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07);}
     thead tr{background:var(--gray-100);}
-    th{padding:11px 13px;text-align:left;font-size:0.8rem;font-weight:700;color:var(--gray-500);white-space:nowrap;}
-    td{padding:10px 13px;font-size:0.87rem;border-top:1px solid var(--gray-100);vertical-align:middle;}
+    th{padding:11px 13px;text-align:left;font-size:.8rem;font-weight:700;color:var(--gray-500);white-space:nowrap;}
+    td{padding:10px 13px;font-size:.87rem;border-top:1px solid var(--gray-100);vertical-align:middle;}
     tr.registered{background:var(--success-light)!important;}
     tr.registered td{color:#166534;}
     .reg-checkbox{width:17px;height:17px;cursor:pointer;accent-color:var(--success);}
-    .badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:0.74rem;font-weight:700;}
-    .badge-3{background:#fee2e2;color:#b91c1c;}
-    .badge-2{background:#fef9c3;color:#92400e;}
-    .badge-1{background:#dbeafe;color:#1d4ed8;}
+    .badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.74rem;font-weight:700;}
+    .badge-g3{background:#fee2e2;color:#b91c1c;}
+    .badge-g2{background:#fef9c3;color:#92400e;}
+    .badge-g1{background:#dbeafe;color:#1d4ed8;}
     .phone-cell{display:flex;align-items:center;gap:6px;white-space:nowrap;}
     .action-btns{display:flex;gap:5px;}
-    /* Modal */
-    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:100;align-items:center;justify-content:center;}
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:center;justify-content:center;}
     .modal-overlay.open{display:flex;}
-    .modal{background:white;border-radius:14px;padding:28px 24px;width:100%;max-width:430px;box-shadow:0 8px 32px rgba(0,0,0,0.2);}
+    .modal{background:white;border-radius:14px;padding:28px 24px;width:100%;max-width:430px;box-shadow:0 8px 32px rgba(0,0,0,.2);}
     .modal h2{font-size:1.05rem;font-weight:700;margin-bottom:18px;}
     .form-group{margin-bottom:13px;}
-    .form-group label{display:block;font-size:0.8rem;color:var(--gray-700);margin-bottom:4px;font-weight:600;}
-    .form-group input,.form-group select{width:100%;padding:9px 12px;border:1px solid var(--gray-300);border-radius:8px;font-size:0.9rem;outline:none;}
+    .form-group label{display:block;font-size:.8rem;color:var(--gray-700);margin-bottom:4px;font-weight:600;}
+    .form-group input,.form-group select{width:100%;padding:9px 12px;border:1px solid var(--gray-300);border-radius:8px;font-size:.9rem;outline:none;}
     .form-group input:focus,.form-group select:focus{border-color:var(--primary);}
-    .form-hint{font-size:0.75rem;color:var(--gray-500);margin-top:4px;}
+    .form-hint{font-size:.75rem;color:var(--gray-500);margin-top:4px;}
     .modal-footer{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
-    .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;margin-right:6px;vertical-align:middle;}
+    .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;margin-right:6px;vertical-align:middle;}
     @keyframes spin{to{transform:rotate(360deg);}}
-    .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:white;padding:10px 22px;border-radius:99px;font-size:0.88rem;opacity:0;transition:all 0.25s;z-index:200;pointer-events:none;}
+    .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:white;padding:10px 22px;border-radius:99px;font-size:.88rem;opacity:0;transition:all .25s;z-index:200;pointer-events:none;}
     .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-    @media(max-width:640px){th,td{padding:8px 9px;font-size:0.8rem;}.action-btns{flex-direction:column;}}
+    @media(max-width:640px){th,td{padding:8px 9px;font-size:.8rem;}.action-btns{flex-direction:column;}}
   </style>
 </head>
 <body>
-
 <header>
   <h1>🏃 Pass 인천송도센터 상담생 관리</h1>
   <div class="header-right">
@@ -90,20 +82,17 @@
     <button class="btn-token" onclick="openTokenModal()">⚙️ 토큰 설정</button>
   </div>
 </header>
-
 <div class="container">
   <div id="tokenBanner">
     <span>⚠️ GitHub 토큰이 설정되지 않았습니다. 지금은 로컈에서만 저장됩니다.</span>
     <button class="btn btn-primary btn-sm" onclick="openTokenModal()">토큰 설정하기</button>
   </div>
-
   <div class="stats-bar">
     <div class="stat-card"><div class="num" id="statTotal">0</div><div class="label">전체 상담생</div></div>
     <div class="stat-card"><div class="num" id="statReg">0</div><div class="label">등록 완료</div></div>
     <div class="stat-card"><div class="num" id="statPending">0</div><div class="label">미등록</div></div>
     <div class="stat-card"><div class="num" id="statRate">0%</div><div class="label">등록률</div></div>
   </div>
-
   <div class="bulk-panel">
     <h3>📋 일괄 번호 복사 (문자 발송용)</h3>
     <div class="bulk-buttons">
@@ -113,14 +102,13 @@
       <button class="btn btn-success" onclick="bulkCopy('parent','unregistered')">👨‍👩‍👧 미등록 부모님 번호 복사</button>
     </div>
   </div>
-
   <div class="toolbar">
     <input type="text" id="searchInput" placeholder="🔍 이름, 학교로 검색..." oninput="renderAll()" />
     <select class="filter-sel" id="filterGrade" onchange="renderAll()">
       <option value="all">전체 학년</option>
-      <option value="고3">고3 이상</option>
-      <option value="고2">고2</option>
-      <option value="고1">고1</option>
+      <option value="g3">고3 이상</option>
+      <option value="g2">고2</option>
+      <option value="g1">고1</option>
     </select>
     <select class="filter-sel" id="filterReg" onchange="renderAll()">
       <option value="all">전체</option>
@@ -129,7 +117,6 @@
     </select>
     <button class="btn btn-primary" onclick="openAddModal()">+ 신규 상담생 추가</button>
   </div>
-
   <div id="tableContainer"></div>
 </div>
 
@@ -140,7 +127,11 @@
     <div class="form-group"><label>이름 *</label><input type="text" id="fName" placeholder="홍길동" /></div>
     <div class="form-group"><label>학교 *</label><input type="text" id="fSchool" placeholder="○○고등학교" /></div>
     <div class="form-group"><label>학년 *</label>
-      <select id="fGrade"><option value="고3">고3 이상</option><option value="고2">고2</option><option value="고1">고1</option></select>
+      <select id="fGrade">
+        <option value="g3">고3 이상</option>
+        <option value="g2">고2</option>
+        <option value="g1">고1</option>
+      </select>
     </div>
     <div class="form-group"><label>본인 연락처</label><input type="tel" id="fStudentPhone" placeholder="010-0000-0000" /></div>
     <div class="form-group"><label>부모님 연락처</label><input type="tel" id="fParentPhone" placeholder="010-0000-0000" /></div>
@@ -173,30 +164,34 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const OWNER='ckmzx', REPO='sangdam-manager', FILE='data/students.json', BRANCH='main';
+const OWNER='ckmzx',REPO='sangdam-manager',FILE='data/students.json',BRANCH='main';
+
+// grade 키: g3=고3이상, g2=고2, g1=고1
+const GRADE_LABEL={'g3':'고3 이상','g2':'고2','g1':'고1'};
+const GRADE_BADGE={'g3':'badge-g3','g2':'badge-g2','g1':'badge-g1'};
+const GRADES=['g3','g2','g1'];
 
 const DEFAULT_DATA=[
-  {id:1,  name:"박주성", school:"인천하늘고", grade:"고3", studentPhone:"010-9082-9883", parentPhone:"010-6310-9883", registered:false, memo:""},
-  {id:2,  name:"장형욱", school:"영등포공고", grade:"고3", studentPhone:"010-8187-4266", parentPhone:"010-6342-4266", registered:false, memo:""},
-  {id:3,  name:"이유빈", school:"논현고",     grade:"고3", studentPhone:"010-9420-2038", parentPhone:"010-4370-3161", registered:false, memo:""},
-  {id:4,  name:"이예은", school:"해송고",     grade:"고3", studentPhone:"010-7379-1251", parentPhone:"010-3823-8237", registered:false, memo:""},
-  {id:5,  name:"김지호", school:"연송고",     grade:"고3", studentPhone:"010-6272-3669", parentPhone:"010-9171-3669", registered:false, memo:""},
-  {id:6,  name:"원동현", school:"연수고",     grade:"고2", studentPhone:"010-9172-7209", parentPhone:"010-3809-7208", registered:false, memo:""},
-  {id:7,  name:"전소현", school:"인천고잔고", grade:"고2", studentPhone:"010-3973-3150", parentPhone:"010-8617-3150", registered:false, memo:""},
-  {id:8,  name:"홍지석", school:"연수고",     grade:"고2", studentPhone:"010-3149-9312", parentPhone:"010-2628-9312", registered:false, memo:""},
-  {id:9,  name:"박준환", school:"대건고",     grade:"고2", studentPhone:"010-3169-4935", parentPhone:"010-2355-4935", registered:false, memo:""},
-  {id:10, name:"박세빈", school:"학익여고",   grade:"고2", studentPhone:"010-3101-8651", parentPhone:"010-2667-8651", registered:false, memo:""},
-  {id:11, name:"김주아", school:"인천여고",   grade:"고2", studentPhone:"010-9892-4439", parentPhone:"010-2937-4439", registered:false, memo:""},
-  {id:12, name:"이유찬", school:"연수고",     grade:"고2", studentPhone:"010-5786-7753", parentPhone:"010-8349-7753", registered:false, memo:""},
-  {id:13, name:"이예윤", school:"인천논현고", grade:"고2", studentPhone:"010-2969-6925", parentPhone:"",              registered:false, memo:""},
-  {id:14, name:"정윤아", school:"옥련여고",   grade:"고2", studentPhone:"010-3053-2363", parentPhone:"010-3159-4673", registered:false, memo:""},
-  {id:15, name:"고은서", school:"인천여고",   grade:"고2", studentPhone:"010-2598-5022", parentPhone:"010-2261-9022", registered:false, memo:""},
-  {id:16, name:"김민우", school:"연송고",     grade:"고1", studentPhone:"010-4616-5433", parentPhone:"010-6286-5433", registered:false, memo:""}
+  {id:1,  name:"박주성", school:"인천하늘고", grade:"g3", studentPhone:"010-9082-9883", parentPhone:"010-6310-9883", registered:false, memo:""},
+  {id:2,  name:"장형욱", school:"영등포공고", grade:"g3", studentPhone:"010-8187-4266", parentPhone:"010-6342-4266", registered:false, memo:""},
+  {id:3,  name:"이유빈", school:"논현고",     grade:"g3", studentPhone:"010-9420-2038", parentPhone:"010-4370-3161", registered:false, memo:""},
+  {id:4,  name:"이예은", school:"해송고",     grade:"g3", studentPhone:"010-7379-1251", parentPhone:"010-3823-8237", registered:false, memo:""},
+  {id:5,  name:"김지호", school:"연송고",     grade:"g3", studentPhone:"010-6272-3669", parentPhone:"010-9171-3669", registered:false, memo:""},
+  {id:6,  name:"원동현", school:"연수고",     grade:"g2", studentPhone:"010-9172-7209", parentPhone:"010-3809-7208", registered:false, memo:""},
+  {id:7,  name:"전소현", school:"인천고잔고", grade:"g2", studentPhone:"010-3973-3150", parentPhone:"010-8617-3150", registered:false, memo:""},
+  {id:8,  name:"홍지석", school:"연수고",     grade:"g2", studentPhone:"010-3149-9312", parentPhone:"010-2628-9312", registered:false, memo:""},
+  {id:9,  name:"박준환", school:"대건고",     grade:"g2", studentPhone:"010-3169-4935", parentPhone:"010-2355-4935", registered:false, memo:""},
+  {id:10, name:"박세빈", school:"학익여고",   grade:"g2", studentPhone:"010-3101-8651", parentPhone:"010-2667-8651", registered:false, memo:""},
+  {id:11, name:"김주아", school:"인천여고",   grade:"g2", studentPhone:"010-9892-4439", parentPhone:"010-2937-4439", registered:false, memo:""},
+  {id:12, name:"이유찬", school:"연수고",     grade:"g2", studentPhone:"010-5786-7753", parentPhone:"010-8349-7753", registered:false, memo:""},
+  {id:13, name:"이예윤", school:"인천논현고", grade:"g2", studentPhone:"010-2969-6925", parentPhone:"",              registered:false, memo:""},
+  {id:14, name:"정윤아", school:"옥련여고",   grade:"g2", studentPhone:"010-3053-2363", parentPhone:"010-3159-4673", registered:false, memo:""},
+  {id:15, name:"고은서", school:"인천여고",   grade:"g2", studentPhone:"010-2598-5022", parentPhone:"010-2261-9022", registered:false, memo:""},
+  {id:16, name:"김민우", school:"연송고",     grade:"g1", studentPhone:"010-4616-5433", parentPhone:"010-6286-5433", registered:false, memo:""}
 ];
 
-let students=[], nextId=17, editingId=null, currentFileSha=null;
+let students=[],nextId=17,editingId=null,currentFileSha=null;
 
-// ─ 토큰
 function getToken(){return localStorage.getItem('gh_pat')||'';}
 function openTokenModal(){document.getElementById('tokenInput').value=getToken();document.getElementById('tokenModalOverlay').classList.add('open');}
 function closeTokenModal(){document.getElementById('tokenModalOverlay').classList.remove('open');}
@@ -211,51 +206,44 @@ function saveToken(){
 function clearToken(){
   if(!confirm('토큰을 삭제하시겠습니까?'))return;
   localStorage.removeItem('gh_pat');
-  closeTokenModal();
-  updateBanner();
+  closeTokenModal();updateBanner();
   showToast('토큰 삭제 완료');
 }
 function updateBanner(){
   document.getElementById('tokenBanner').style.display=getToken()?'none':'flex';
 }
 
-// ─ GitHub API
 function apiHeaders(){
   return{'Authorization':'token '+getToken(),'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'};
 }
 
 async function loadFromGitHub(){
-  // 토큰 없으면 즉시 fallback 표시
-  if(!getToken()){
-    loadFallback();
-    updateBanner();
-    return;
-  }
-  setSyncStatus('🔄 서버에서 데이터 로딩 중...');
+  if(!getToken()){loadFallback();updateBanner();return;}
+  setSyncStatus('🔄 서버에서 로딩 중...');
   try{
     const res=await fetch(
       `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}?ref=${BRANCH}&t=${Date.now()}`,
       {headers:apiHeaders()}
     );
     if(res.status===404){
-      students=DEFAULT_DATA.map(s=>({...s})); nextId=17;
-      renderAll();
+      students=DEFAULT_DATA.map(s=>({...s}));nextId=17;
       await saveToGitHub();
     } else if(res.ok){
       const json=await res.json();
       currentFileSha=json.sha;
-      const decoded=JSON.parse(atob(json.content.replace(/\n/g,'')));
+      const raw=json.content.replace(/\n/g,'');
+      const decoded=JSON.parse(atob(raw));
       students=decoded.students||DEFAULT_DATA.map(s=>({...s}));
       nextId=decoded.nextId||(Math.max(...students.map(s=>s.id))+1);
-      setSyncStatus('✅ 동기화 완료: '+new Date().toLocaleTimeString('ko-KR'));
-      // fallback 업데이트
       localStorage.setItem('passStudents_fallback',JSON.stringify({students,nextId}));
+      setSyncStatus('✅ 동기화 완료: '+new Date().toLocaleTimeString('ko-KR'));
     } else {
-      throw new Error('HTTP '+res.status+(res.status===401?' (토큰 오류)':res.status===403?' (권한 부족)':''));
+      const errText=res.status===401?' (토큰 오류)':res.status===403?' (권한 부족)':'';
+      throw new Error('HTTP '+res.status+errText);
     }
   } catch(e){
     setSyncStatus('⚠️ '+e.message);
-    showToast('⚠️ 로딩 실패 — '+e.message);
+    showToast('⚠️ 로딩 실패: '+e.message);
     loadFallback();
   }
   updateBanner();
@@ -265,12 +253,11 @@ async function loadFromGitHub(){
 function loadFallback(){
   const raw=localStorage.getItem('passStudents_fallback');
   if(raw){
-    const p=JSON.parse(raw);
-    students=p.students; nextId=p.nextId;
-    setSyncStatus('💾 로컈 데이터 표시 — 토큰 설정 후 서버 데이터 사용 가능');
+    const p=JSON.parse(raw);students=p.students;nextId=p.nextId;
+    setSyncStatus('💾 로컈 데이터 표시');
   } else {
-    students=DEFAULT_DATA.map(s=>({...s})); nextId=17;
-    setSyncStatus('토큰 미설정 — 우측 상단 ⚙️ 토큰 설정 버튼을 눌러주세요');
+    students=DEFAULT_DATA.map(s=>({...s}));nextId=17;
+    setSyncStatus('토큰 미설정 — 우측 상단 ⚙️을 눌러주세요');
   }
 }
 
@@ -283,7 +270,7 @@ async function saveToGitHub(){
   setSyncStatus('🔄 저장 중...');
   const content=btoa(unescape(encodeURIComponent(JSON.stringify({students,nextId},null,2))));
   const body={message:`데이터 업데이트 - ${new Date().toLocaleString('ko-KR')}`,content,branch:BRANCH};
-  if(currentFileSha) body.sha=currentFileSha;
+  if(currentFileSha)body.sha=currentFileSha;
   try{
     const res=await fetch(
       `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`,
@@ -292,22 +279,21 @@ async function saveToGitHub(){
     if(res.ok){
       const json=await res.json();
       currentFileSha=json.content.sha;
-      setSyncStatus('✅ 저장 완료: '+new Date().toLocaleTimeString('ko-KR'));
       localStorage.setItem('passStudents_fallback',JSON.stringify({students,nextId}));
+      setSyncStatus('✅ 저장 완료: '+new Date().toLocaleTimeString('ko-KR'));
     } else {
       const err=await res.json();
       throw new Error(err.message||'HTTP '+res.status);
     }
   } catch(e){
     setSyncStatus('⚠️ 저장 실패: '+e.message);
-    showToast('⚠️ GitHub 저장 실패! 토큰 확인 필요');
+    showToast('⚠️ GitHub 저장 실패!');
     localStorage.setItem('passStudents_fallback',JSON.stringify({students,nextId}));
   }
 }
 
 function setSyncStatus(msg){document.getElementById('syncStatus').textContent=msg;}
 
-// ─ 통계
 function updateStats(data){
   const total=data.length,reg=data.filter(s=>s.registered).length;
   document.getElementById('statTotal').textContent=total;
@@ -316,23 +302,20 @@ function updateStats(data){
   document.getElementById('statRate').textContent=total?Math.round(reg/total*100)+'%':'0%';
 }
 
-// ─ 렌더
-const GRADES=['고3','고2','고1'],GRADE_LBL={'고3':'고3 이상','고2':'고2','고1':'고1'},GRADE_BDG={'고3':'badge-3','고2':'badge-2','고1':'badge-1'};
-
 function getFiltered(){
   const q=document.getElementById('searchInput').value.toLowerCase();
   const gf=document.getElementById('filterGrade').value;
   const rf=document.getElementById('filterReg').value;
   return students.filter(s=>{
     const mQ=!q||s.name.includes(q)||s.school.includes(q);
-    const mG=gf==='all'||s.grade===gf;
-    const mR=rf==='all'||(rf==='registered'?s.registered:!s.registered);
+    const mG=(gf==='all'||s.grade===gf);
+    const mR=(rf==='all'||(rf==='registered'?s.registered:!s.registered));
     return mQ&&mG&&mR;
   });
 }
 
 function phoneCell(phone){
-  if(!phone) return '<span style="color:var(--gray-300)">-</span>';
+  if(!phone)return '<span style="color:var(--gray-300)">-</span>';
   return `<div class="phone-cell">${phone}<button class="btn btn-outline btn-sm" onclick="copyOne('${phone}')">복사</button></div>`;
 }
 
@@ -341,28 +324,28 @@ function renderAll(){
   updateStats(filtered);
   const container=document.getElementById('tableContainer');
   container.innerHTML='';
-  let anyShown=false;
-  GRADES.forEach(grade=>{
-    const list=filtered.filter(s=>s.grade===grade);
-    if(!list.length) return;
-    anyShown=true;
+  let shown=false;
+  GRADES.forEach(g=>{
+    const list=filtered.filter(s=>s.grade===g);
+    if(!list.length)return;
+    shown=true;
     const block=document.createElement('div');
     block.className='grade-block';
-    block.innerHTML=`<div class="section-label">${GRADE_LBL[grade]} (${list.length}명)</div>`;
+    block.innerHTML=`<div class="section-label">${GRADE_LABEL[g]} (${list.length}명)</div>`;
     const tbl=document.createElement('table');
     tbl.innerHTML=`<thead><tr><th>등록</th><th>이름</th><th>학교</th><th>학년</th><th>본인 연락처</th><th>부모님 연락처</th><th>메모</th><th>관리</th></tr></thead>`;
     const tbody=document.createElement('tbody');
     list.forEach(s=>{
       const tr=document.createElement('tr');
-      if(s.registered) tr.classList.add('registered');
+      if(s.registered)tr.classList.add('registered');
       tr.innerHTML=`
         <td><input type="checkbox" class="reg-checkbox" ${s.registered?'checked':''} onchange="toggleReg(${s.id},this.checked)"></td>
         <td><strong>${s.name}</strong></td>
         <td>${s.school}</td>
-        <td><span class="badge ${GRADE_BDG[s.grade]}">${s.grade}</span></td>
+        <td><span class="badge ${GRADE_BADGE[s.grade]}">${GRADE_LABEL[s.grade]}</span></td>
         <td>${phoneCell(s.studentPhone)}</td>
         <td>${phoneCell(s.parentPhone)}</td>
-        <td style="color:var(--gray-500);font-size:0.8rem">${s.memo||''}</td>
+        <td style="color:var(--gray-500);font-size:.8rem">${s.memo||''}</td>
         <td><div class="action-btns">
           <button class="btn btn-outline btn-sm" onclick="openEditModal(${s.id})">✏️ 수정</button>
           <button class="btn btn-danger btn-sm" onclick="deleteStudent(${s.id})">🗑 삭제</button>
@@ -371,15 +354,12 @@ function renderAll(){
     });
     tbl.appendChild(tbody);block.appendChild(tbl);container.appendChild(block);
   });
-  if(!anyShown) container.innerHTML='<div style="text-align:center;padding:48px;color:var(--gray-500)">검색 결과가 없습니다.</div>';
+  if(!shown)container.innerHTML='<div style="text-align:center;padding:48px;color:var(--gray-500)">학생이 없습니다.</div>';
 }
 
-// ─ 데이터 조작
 function toggleReg(id,checked){
   const s=students.find(x=>x.id===id);if(!s)return;
-  s.registered=checked;
-  renderAll();
-  saveToGitHub();
+  s.registered=checked;renderAll();saveToGitHub();
   showToast(checked?`✅ ${s.name} 등록 완료!`:`⬜ ${s.name} 미등록으로 변경`);
 }
 
@@ -397,7 +377,7 @@ function openAddModal(){
   editingId=null;
   document.getElementById('modalTitle').textContent='신규 상담생 추가';
   ['fName','fSchool','fStudentPhone','fParentPhone','fMemo'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fGrade').value='고3';
+  document.getElementById('fGrade').value='g3';
   document.getElementById('modalOverlay').classList.add('open');
   document.getElementById('fName').focus();
 }
@@ -423,7 +403,8 @@ async function saveStudent(){
   if(!name||!school){alert('이름과 학교는 필수입니다.');return;}
   const btn=document.getElementById('btnSaveStudent');
   btn.disabled=true;btn.innerHTML='<span class="spinner"></span>저장 중...';
-  if(editingId!==null){
+  const wasEditing=editingId!==null;
+  if(wasEditing){
     const s=students.find(x=>x.id===editingId);
     s.name=name;s.school=school;
     s.grade=document.getElementById('fGrade').value;
@@ -435,23 +416,20 @@ async function saveStudent(){
       grade:document.getElementById('fGrade').value,
       studentPhone:document.getElementById('fStudentPhone').value.trim(),
       parentPhone:document.getElementById('fParentPhone').value.trim(),
-      registered:false,
-      memo:document.getElementById('fMemo').value.trim()
+      registered:false,memo:document.getElementById('fMemo').value.trim()
     });
   }
   await saveToGitHub();
   btn.disabled=false;btn.innerHTML='저장';
-  const wasEditing=editingId!==null;
   closeModal();renderAll();
-  showToast(wasEditing?'✅ 수정 완료!':'✅ 신규 상담생 추가 완료!');
+  showToast(wasEditing?'✅ 수정 완료!':'✅ 신규 상담생 추가!');
 }
 
 async function deleteStudent(id){
   const s=students.find(x=>x.id===id);if(!s)return;
   if(!confirm(`'${s.name}' 학생을 삭제하시겠습니까?`))return;
   students=students.filter(x=>x.id!==id);
-  renderAll();
-  await saveToGitHub();
+  renderAll();await saveToGitHub();
   showToast(`🗑 ${s.name} 삭제 완료`);
 }
 
@@ -461,13 +439,13 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.getElementById('tokenModalOverlay').addEventListener('click',function(e){if(e.target===this)closeTokenModal();});
+document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+document.getElementById('tokenModalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeTokenModal();});
 
-// ─ 시작: 항상 fallback 먼저 표시 후 GitHub에서 갱신
+// 시작: fallback 먼저 표시 후 GitHub에서 갱신
 loadFallback();
 renderAll();
-if(getToken()) loadFromGitHub();
+if(getToken())loadFromGitHub();
 else updateBanner();
 </script>
 </body>
