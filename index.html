@@ -120,7 +120,6 @@
   <div id="tableContainer"></div>
 </div>
 
-<!-- 학생 모달 -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <h2 id="modalTitle">신규 상담생 추가</h2>
@@ -143,7 +142,6 @@
   </div>
 </div>
 
-<!-- 토큰 모달 -->
 <div class="modal-overlay" id="tokenModalOverlay">
   <div class="modal">
     <h2>🔑 GitHub 토큰 설정</h2>
@@ -166,7 +164,6 @@
 <script>
 const OWNER='ckmzx',REPO='sangdam-manager',FILE='data/students.json',BRANCH='main';
 
-// grade 키: g3=고3이상, g2=고2, g1=고1
 const GRADE_LABEL={'g3':'고3 이상','g2':'고2','g1':'고1'};
 const GRADE_BADGE={'g3':'badge-g3','g2':'badge-g2','g1':'badge-g1'};
 const GRADES=['g3','g2','g1'];
@@ -191,6 +188,17 @@ const DEFAULT_DATA=[
 ];
 
 let students=[],nextId=17,editingId=null,currentFileSha=null;
+
+// ─── UTF-8 안전 Base64 디코더 ───────────────────────────
+function b64DecodeUnicode(str){
+  return decodeURIComponent(atob(str).split('').map(c=>{
+    return '%'+('00'+c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+}
+// ─── UTF-8 안전 Base64 인코더 ───────────────────────────
+function b64EncodeUnicode(str){
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,(_,p1)=>String.fromCharCode('0x'+p1)));
+}
 
 function getToken(){return localStorage.getItem('gh_pat')||'';}
 function openTokenModal(){document.getElementById('tokenInput').value=getToken();document.getElementById('tokenModalOverlay').classList.add('open');}
@@ -231,8 +239,8 @@ async function loadFromGitHub(){
     } else if(res.ok){
       const json=await res.json();
       currentFileSha=json.sha;
-      const raw=json.content.replace(/\n/g,'');
-      const decoded=JSON.parse(atob(raw));
+      // 한글 깨짐 해결: b64DecodeUnicode 사용
+      const decoded=JSON.parse(b64DecodeUnicode(json.content.replace(/\n/g,'')));
       students=decoded.students||DEFAULT_DATA.map(s=>({...s}));
       nextId=decoded.nextId||(Math.max(...students.map(s=>s.id))+1);
       localStorage.setItem('passStudents_fallback',JSON.stringify({students,nextId}));
@@ -268,7 +276,8 @@ async function saveToGitHub(){
     return;
   }
   setSyncStatus('🔄 저장 중...');
-  const content=btoa(unescape(encodeURIComponent(JSON.stringify({students,nextId},null,2))));
+  // 한글 깨짐 해결: b64EncodeUnicode 사용
+  const content=b64EncodeUnicode(JSON.stringify({students,nextId},null,2));
   const body={message:`데이터 업데이트 - ${new Date().toLocaleString('ko-KR')}`,content,branch:BRANCH};
   if(currentFileSha)body.sha=currentFileSha;
   try{
@@ -442,7 +451,6 @@ function showToast(msg){
 document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
 document.getElementById('tokenModalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeTokenModal();});
 
-// 시작: fallback 먼저 표시 후 GitHub에서 갱신
 loadFallback();
 renderAll();
 if(getToken())loadFromGitHub();
