@@ -159,16 +159,6 @@
       "parentPhone": "010-6286-5433",
       "registered": false,
       "memo": ""
-    },
-    {
-      "id": 17,
-      "name": "가나다",
-      "school": "석정고",
-      "grade": "g3",
-      "studentPhone": "010-6283-8117",
-      "parentPhone": "010-6654-2420",
-      "registered": false,
-      "memo": "3/12"
     }
   ],
   "nextId": 18
