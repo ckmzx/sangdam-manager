@@ -189,7 +189,17 @@
       "parentPhone": "010-9699-0339",
       "registered": false,
       "memo": "7/25"
+    },
+    {
+      "id": 21,
+      "name": "장원호",
+      "school": "인천남동고",
+      "grade": "g1",
+      "studentPhone": "010-5222-1561",
+      "parentPhone": "",
+      "registered": false,
+      "memo": "7/24"
     }
   ],
-  "nextId": 21
+  "nextId": 22
 }
