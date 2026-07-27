@@ -179,7 +179,17 @@
       "parentPhone": "010-2793-2664",
       "registered": false,
       "memo": "7/25"
+    },
+    {
+      "id": 20,
+      "name": "모수민",
+      "school": "재능고",
+      "grade": "g2",
+      "studentPhone": "010-9563-0559",
+      "parentPhone": "010-9699-0339",
+      "registered": false,
+      "memo": "7/25"
     }
   ],
-  "nextId": 20
+  "nextId": 21
 }
