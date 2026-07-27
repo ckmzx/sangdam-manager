@@ -159,7 +159,17 @@
       "parentPhone": "010-6286-5433",
       "registered": false,
       "memo": ""
+    },
+    {
+      "id": 18,
+      "name": "강혜주",
+      "school": "영종고",
+      "grade": "g3",
+      "studentPhone": "010-3139-8129",
+      "parentPhone": "010-6219-9968",
+      "registered": false,
+      "memo": "7/25"
     }
   ],
-  "nextId": 18
+  "nextId": 19
 }
