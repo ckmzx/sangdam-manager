@@ -199,7 +199,17 @@
       "parentPhone": "",
       "registered": false,
       "memo": "7/24"
+    },
+    {
+      "id": 22,
+      "name": "이하은",
+      "school": "인천뷰티예술고",
+      "grade": "g1",
+      "studentPhone": "010-3585-1085",
+      "parentPhone": "010-5775-3434",
+      "registered": false,
+      "memo": "7/27"
     }
   ],
-  "nextId": 22
+  "nextId": 23
 }
