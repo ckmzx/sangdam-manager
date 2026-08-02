@@ -209,7 +209,17 @@
       "parentPhone": "010-5775-3434",
       "registered": false,
       "memo": "7/27"
+    },
+    {
+      "id": 23,
+      "name": "김건",
+      "school": "연송고등학교",
+      "grade": "g3",
+      "studentPhone": "010-4687-0896",
+      "parentPhone": "010-2733-0896",
+      "registered": false,
+      "memo": ""
     }
   ],
-  "nextId": 23
+  "nextId": 24
 }
