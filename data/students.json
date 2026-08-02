@@ -219,7 +219,17 @@
       "parentPhone": "010-2733-0896",
       "registered": false,
       "memo": ""
+    },
+    {
+      "id": 24,
+      "name": "신지웅",
+      "school": "서해고",
+      "grade": "g2",
+      "studentPhone": "010-4713-4368",
+      "parentPhone": "010-4142-0816",
+      "registered": false,
+      "memo": "8/1"
     }
   ],
-  "nextId": 24
+  "nextId": 25
 }
